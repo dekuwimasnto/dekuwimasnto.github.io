@@ -154,7 +154,7 @@
     .btn-o { background: transparent; color: var(--text2); border: 1px solid var(--line2); }
     .btn-o:hover { border-color: var(--line2); color: var(--text); transform: translateY(-2px); }
 
-    .icon-btn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; color: var(--text3); font-size: 1rem; text-decoration: none; transition: transform .25s, border-color .25s, color .25s, background-color .25s; position: relative; overflow: hidden; }
+    .icon-btn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; color: var(--text3); font-size: 1rem; text-decoration: none; transition: transform .25s, border-color .25s, color .25s, background-color .25s; position: relative; overflow: hidden; background: transparent; font-family: var(--sans); padding: 0; }
     .icon-btn::after { content: ''; position: absolute; inset: 0; background: var(--gold-dim); transform: scale(0); transition: transform .3s ease; border-radius: inherit;}
     .icon-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px) rotate(-3deg); }
     .icon-btn:hover::after { transform: scale(1); }
@@ -228,6 +228,51 @@
     }
 
     #typInput:focus { border-color: var(--gold) !important; background: rgba(0,0,0,0.5); }
+
+    /* ── MINI GAMES (PICKER + BRICK BREAKER) ── */
+    .game-pick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    .game-pick { display: flex; flex-direction: column; align-items: center; gap: .7rem; padding: 1.4rem 1rem; background: var(--surface2); border: 1px solid var(--line2); border-radius: 12px; color: var(--text); cursor: pointer; transition: transform .25s, border-color .25s, background-color .25s, box-shadow .25s; font-family: var(--sans); text-align: center; }
+    .game-pick > i { font-size: 1.9rem; }
+    .game-pick b { font-size: .9rem; font-weight: 600; display: block; }
+    .game-pick small { font-size: .72rem; color: var(--text2); line-height: 1.45; display: block; margin-top: .2rem; }
+    .game-pick:hover { transform: translateY(-3px); border-color: var(--gold); background: rgba(201,169,110,.06); box-shadow: 0 12px 28px rgba(0,0,0,.35); }
+    .bb-mode-pick { display: inline-flex; gap: .4rem; margin-top: .15rem; }
+    .bb-mode-chip { padding: .28rem .75rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line2); color: var(--text2); font-size: .68rem; font-weight: 600; cursor: pointer; font-family: var(--sans); transition: all .2s; }
+    .bb-mode-chip:hover { border-color: var(--gold); color: var(--gold); }
+    .bb-mode-chip.active { background: var(--gold); border-color: var(--gold); color: #08090d; }
+    @media (max-width: 480px) { .game-pick-grid { grid-template-columns: 1fr; } }
+
+    .bb-content { width: 94%; max-width: 860px; padding: 1.4rem; background: var(--surface); border: 1.5px solid rgba(201,169,110,.55); box-shadow: 0 0 0 1px rgba(201,169,110,.15), 0 0 34px rgba(201,169,110,.22), 0 24px 64px rgba(0,0,0,.6); }
+    .bb-hud { display: flex; justify-content: space-between; align-items: center; margin-bottom: .9rem; flex-wrap: wrap; gap: .6rem; padding-right: 2.4rem; }
+    .bb-hud-item { display: flex; flex-direction: column; line-height: 1.2; }
+    .bb-hud-item span { font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text3); }
+    .bb-hud-item b { font-size: 1.1rem; color: var(--gold); font-weight: 600; }
+    .bb-hud-item .bb-lives { color: var(--red); font-size: .95rem; letter-spacing: .15em; }
+    .bb-stage { position: relative; border: 1px solid var(--line2); border-radius: var(--r); overflow: hidden; background: #0b0e14; }
+    #bbCanvas { display: block; width: 100%; height: auto; aspect-ratio: 760 / 560; touch-action: none; }
+    .bb-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; background: rgba(11,14,20,.84); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .3s; text-align: center; padding: 1rem; }
+    .bb-overlay.show { opacity: 1; pointer-events: auto; }
+    .bb-overlay i { font-size: 2.6rem; color: var(--gold); }
+    .bb-overlay h3 { color: var(--text); font-size: 1.3rem; }
+    .bb-overlay p { color: var(--text2); font-size: .9rem; }
+    .bb-overlay button { margin-top: .4rem; padding: .55rem 1.5rem; border: none; border-radius: 8px; background: var(--gold); color: #08090d; font-weight: 600; font-size: .85rem; cursor: pointer; transition: background .2s, transform .2s; font-family: var(--sans); }
+    .bb-overlay button:hover { background: var(--gold2); transform: translateY(-2px); }
+    .bb-controls { display: flex; align-items: center; justify-content: center; gap: .45rem; flex-wrap: wrap; margin-top: .8rem; font-size: .72rem; color: var(--text3); }
+    .bb-recall { display: inline-flex; align-items: center; gap: .35rem; background: var(--surface2); border: 1px solid var(--line2); color: var(--gold); padding: .3rem .8rem; border-radius: 999px; font-size: .68rem; font-weight: 600; cursor: pointer; font-family: var(--sans); transition: all .2s; }
+    .bb-recall:hover { border-color: var(--gold); background: rgba(201,169,110,.08); transform: translateY(-1px); }
+    .bb-recall:active { transform: translateY(1px); }
+
+    @media (max-width: 768px) {
+      .bb-content { padding: .6rem; width: 96%; max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain; }
+      #bbModal.open { align-items: flex-start; padding-top: max(2.5rem, env(safe-area-inset-top, 0px)); }
+      .bb-hud { margin-bottom: .5rem; gap: .35rem .9rem; }
+      .bb-hud-item b { font-size: .95rem; }
+      .bb-hud-item .bb-lives { font-size: .84rem; }
+      .bb-overlay i { font-size: 2rem; }
+      .bb-overlay h3 { font-size: 1.1rem; }
+      .bb-overlay button { padding: .5rem 1.2rem; font-size: .8rem; }
+      .bb-controls { font-size: .6rem; margin-top: .5rem; }
+    }
 
     /* ── CHATBOT WIDGET ── */
     .chat-fab { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--gold); color: #08090d; border: none; font-size: 1.5rem; cursor: pointer; z-index: 9991; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(201,169,110,0.3); transition: transform 0.2s; }

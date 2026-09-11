@@ -228,6 +228,7 @@
                 <a href="https://dribbble.com/Ntoo"             class="icon-btn" target="_blank" rel="noopener" aria-label="Dribbble"><i class="bx bxl-dribbble"></i></a>
                 <a href="https://monkeytype.com/profile/Amemiya"             class="icon-btn" target="_blank" rel="noopener" aria-label="Monkeytype typing test"><i class="bx bxs-keyboard"></i></a>
                 <a href="https://10fastfingers.com/user/riantoo-"             class="icon-btn" target="_blank" rel="noopener" aria-label="10fastfingers typing test"><i class="bx bx-bracket"></i></a>
+                <button type="button" class="icon-btn" id="gameLauncherBtn" aria-label="Mini games" title="Mini Games"><i class="bx bx-joystick-alt"></i></button>
               </div>
             </div>
             
@@ -890,6 +891,50 @@
       </div>
     </div>
   </div>
+  <div class="wpm-modal" id="gamesModal">
+    <div class="wpm-content" style="max-width:470px;">
+      <button class="wpm-close" id="gamesClose" aria-label="Close games modal"><i class="bx bx-x"></i></button>
+      <h3 style="color: var(--text); font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;"><i class="bx bx-joystick-alt" style="color: var(--gold);"></i> Mini Games</h3>
+      <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.6;">Mau main apa hari ini? Skor tertinggi Brick Breaker disimpen otomatis di browser lu.</p>
+      <div class="game-pick-grid">
+        <button class="game-pick" data-game="wpm" type="button">
+          <i class="bx bxs-keyboard" style="color: var(--green);"></i>
+          <span><b>Beat My WPM</b><small>Ketahanan ngetik — challenge rekor 95 WPM</small></span>
+        </button>
+        <button class="game-pick" data-game="brick" id="pickBrick" type="button">
+          <i class="bx bxs-grid" style="color: var(--gold);"></i>
+          <span><b>Brick Breaker</b><small>Classic vs Numbered — hancurin semua blok, wave berlanjut</small></span>
+          <span class="bb-mode-pick">
+            <span role="button" tabindex="0" class="bb-mode-chip active" data-mode="classic">Classic</span>
+            <span role="button" tabindex="0" class="bb-mode-chip" data-mode="numbered">Numbered</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="wpm-modal" id="bbModal">
+    <div class="wpm-content bb-content">
+      <button class="wpm-close" id="bbClose" aria-label="Close Brick Breaker"><i class="bx bx-x"></i></button>
+      <div class="bb-hud">
+        <div class="bb-hud-item"><span>Score</span><b id="bbScore">0</b></div>
+        <div class="bb-hud-item"><span>Best</span><b id="bbBest">0</b></div>
+        <div class="bb-hud-item"><span>Combo</span><b id="bbCombo">x1</b></div>
+        <div class="bb-hud-item"><span>Wave</span><b id="bbWave">1</b></div>
+        <div class="bb-hud-item"><span>Mode</span><b id="bbMode">Classic</b></div>
+        <div class="bb-hud-item"><span>Lives</span><b id="bbLives" class="bb-lives"></b></div>
+      </div>
+      <div class="bb-stage">
+        <canvas id="bbCanvas"></canvas>
+        <div class="bb-overlay" id="bbOverlay">
+          <i class="bx bx-trophy"></i>
+          <h3 id="bbOverTitle">Game Over</h3>
+          <p id="bbOverText">Score akhir: 0</p>
+          <button id="bbRestart" type="button">Main Lagi</button>
+        </div>
+      </div>
+      <p class="bb-controls"><i class="bx bx-mouse"></i> Geser / mouse buat gerakin paddle · <i class="bx bx-pointer"></i> Klik / Space buat lempar bola · <i class="bx bx-keyboard"></i> ← → keyboard · <button type="button" class="bb-recall" id="bbRecall" title="Balikin bola ke slider"><i class="bx bx-arrow-to-bottom"></i> Tarik Bola</button></p>
+    </div>
+  </div>
   <div id="wpmLeaderboardModal" class="wpm-modal" style="display: none; z-index: 9999;">
   <div class="wpm-content" style="max-width: 450px; text-align: center; position: relative;">
     <i class='bx bx-x' id="closeLeaderboardBtn" role="button" tabindex="0" aria-label="Close leaderboard" style="position: absolute; right: 20px; top: 20px; font-size: 1.5rem; color: #9ea1ad; cursor: pointer;"></i>
@@ -1281,5 +1326,6 @@
   <script src="assets/js/theme.js" defer></script>
   <script src="assets/js/tabbar.js" defer></script>
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/games.js" defer></script>
 </body>
 </html>
